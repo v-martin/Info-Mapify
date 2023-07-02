@@ -55,7 +55,7 @@ ROOT_URLCONF = 'info_mapify.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
+        'DIRS': [BASE_DIR / 'countries/templates']
         ,
         'APP_DIRS': True,
         'OPTIONS': {

@@ -1,8 +1,10 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Info mapify</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
     <header>
@@ -11,7 +13,8 @@
 	<main>
         <form>
             <label for="pk">Enter a number (1-193):</label>
-            <input type="text" id="name" name="name">
+            <input type="text" id="name" name="pk">
+            <button type="submit">Submit</button>
         </form>
         <div id="output">
             {% if 'pk' in request.GET %}The country is {{ name }}.

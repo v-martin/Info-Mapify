@@ -3,7 +3,9 @@ from countries.models import Country
 
 
 def show_by_id(request):
-    pk = request.GET.get('pk', '')
-    name = Country.objects.filter(pk=pk)
-    context = {'name': name}
-    return render(request, 'mainpage.html', context)
+    pk = request.GET.get('pk', 1)
+    # if 1 > pk or pk > 193:
+    #     pk = 1
+    country = Country.objects.get(id=pk)
+    context = {'name': country.name}
+    return render(request, 'homepage.html', context)

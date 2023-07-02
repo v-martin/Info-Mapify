@@ -11,7 +11,7 @@ class Country(models.Model):
     median_age = models.FloatField(default=0)
 
     class Meta:
-        table = 'countries'
+        db_table = 'countries'
         ordering = ['name']
 
     def __str__(self):

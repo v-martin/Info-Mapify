@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <header>
+		<h1>Country by id</h1>
+	</header>
+	<main>
+        <form>
+            <label for="pk">Enter a number (1-193):</label>
+            <input type="text" id="name" name="name">
+        </form>
+        <div id="output">
+            {% if 'pk' in request.GET %}The country is {{ name }}.
+            {% else %} Sosi pisos!
+            {% endif %}
+        </div>
+        <div id="right">
+
+        </div>
+	</main>
+</body>
+</html>

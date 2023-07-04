@@ -1,12 +1,6 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Info mapify</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
+{% extends 'countries/base.html' %}
+{% block title %}Info mapify{% endblock %}
+{% block content %}
     <header>
 		<h1>Country by id</h1>
 	</header>
@@ -25,5 +19,5 @@
 
         </div>
 	</main>
-</body>
-</html>
+
+{% endblock %}

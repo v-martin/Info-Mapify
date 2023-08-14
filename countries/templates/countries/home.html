@@ -2,18 +2,28 @@
 {% block title %}Info mapify{% endblock %}
 {% block content %}
     <header>
-		<h1>Country by id</h1>
+		<h1>Countries</h1>
 	</header>
 	<main>
         <form>
-            <label for="pk">Enter a number (1-193):</label>
-            <input type="text" id="name" name="pk">
-            <button type="submit">Submit</button>
+            <div class="form-control">
+                <label for="name">Enter a country:</label>
+                <input type="text" id="name" name="name" placeholder="any existing">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
         <div id="output">
-            {% if 'pk' in request.GET %}The country is {{ name }}.
-            {% else %} Sosi pisos!
-            {% endif %}
+            <div class="list-group">
+                {% for name, gdp, code in list %}
+                    <a href="#" class="list-group-item">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1"> {{ name }} </h5>
+                        </div>
+                        <p class="mb-1">GDP: {{ gdp }} $</p>
+                        <p class="mb-1">Country code: {{ code }}</p>
+                    </a>
+                {% endfor %}
+            </div>
         </div>
         <div id="right">
 

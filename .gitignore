@@ -1,0 +1,6 @@
+data
+__pycache__/
+services/__pycache__/
+services/infrastructure/__pycache__/
+db.sqlite3
+venv

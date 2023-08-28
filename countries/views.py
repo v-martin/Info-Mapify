@@ -6,6 +6,19 @@ from django.contrib.auth import login, logout, authenticate
 
 
 def countries_list(request):
+    """
+    Display an list of CountryEntities.
+
+    **Context**
+
+    ``list``
+        A list of `country_orm.CountryEntity`.
+
+    **Template:**
+
+    :template:`countries/templates/countries/home.html`
+
+    """
     if request.GET.get('name'):
         try:
             country = get_country_by_name(request.GET.get('name'))
@@ -19,38 +32,78 @@ def countries_list(request):
 
 
 def country_by_code(request, code):
+    """
+    Display a CountryEntity by it`s code.
+
+    **Context**
+
+    ``country``
+        An instance of :CountryEntity:`country_orm.CountryEntity`.
+
+    **Template:**
+
+    :template:`countries/templates/countries/country.html`
+
+    """
     country = get_country_by_code(code)
     context = {'name': country.name, 'gdp': country.curr_gdp, 'country_code': country.code}
     return render(request, 'countries/country.html', context)
 
 
 def sign_up(request):
-    if request.method == 'POST':
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('/home')
-        else:
-            return redirect('/sign_up')
-    else:
-        form = SignUpForm()
+    """
+    Sign up for the :model:`django.contrib.auth.models.User`.
 
-    return render(request, 'registration/sign_up.html', {'form': form})
+    **Context**
+
+    ``form``
+        An instance of SighUpForm, that validates username, email and password.
+
+    **Template:**
+
+    :template:`countries/templates/registration/sign_up.html`
+
+    """
+    if request.method != 'POST':
+        form = SignUpForm()
+        return render(request, 'registration/sign_up.html', {'form': form})
+
+    form = SignUpForm(request.POST)
+    if form.is_valid():
+        user = form.save()
+        login(request, user)
+        return redirect('/home')
+
+    return redirect('/sign-up')
 
 
 def sign_in(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            return redirect('/home')
-        else:
-            return redirect('/login')
-    else:
+    """
+    Sign in for the :model:`django.contrib.auth.models.User`.
+
+    **Context**
+
+    ``form``
+        An instance of AuthenticationForm, that validates username and password.
+
+    ``user``
+        An instance of :model:`django.contrib.auth.models.User`, that matches the entered username and password.
+
+    **Template:**
+
+    :template:`countries/templates/registration/login.html`
+
+    """
+    if request.method != 'POST':
         form = AuthenticationForm()
+        return render(request, 'registration/login.html', {'form': form})
 
-    return render(request, 'registration/login.html', {'form': form})
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(request, username=username, password=password)
 
+    if user is not None:
+        login(request, user)
+        return redirect('/home')
+
+    return redirect('/login')

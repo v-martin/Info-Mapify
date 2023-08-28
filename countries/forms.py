@@ -4,6 +4,9 @@ from django.contrib.auth.models import User
 
 
 class SignUpForm(UserCreationForm):
+    """
+    This is the sign up form, including username, email and password.
+    """
     email = forms.EmailField(required=True)
 
     class Meta:

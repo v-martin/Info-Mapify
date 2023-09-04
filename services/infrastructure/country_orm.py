@@ -13,6 +13,7 @@ collection = db[os.environ.get('MONGO_COLLECTION_NAME')]
 
 @dataclass
 class CountryEntity:
+    """An entity of a country, representing a dictionary from MongoDB."""
     name: str
     code: str
     curr_gdp: int

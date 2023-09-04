@@ -23,6 +23,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -30,11 +31,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'countries.apps.CountriesConfig',
     'crispy_forms',
     'crispy_bootstrap5',
+    'countries.apps.CountriesConfig',
+    'users.apps.UsersConfig',
 ]
-
 CRISPY_ALLOWED_TEMPLATES_PACKS = 'bootstrap5'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
